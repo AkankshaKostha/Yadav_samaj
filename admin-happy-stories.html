@@ -1,0 +1,41 @@
+<div class="happy-story-admin">
+  <h2>Manage Happy Stories</h2>
+
+  <!-- Add new story -->
+  <form (ngSubmit)="addStory()" enctype="multipart/form-data" class="add-form">
+    <input type="text" [(ngModel)]="newStory.coupleName" name="coupleName" placeholder="Couple Name" required />
+    <textarea [(ngModel)]="newStory.message" name="message" placeholder="Their story..." required></textarea>
+
+    <input type="file" (change)="onFileSelected($event)" />
+
+    <button type="submit">Add Story</button>
+  </form>
+
+  <!-- Story list -->
+  <table class="story-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Couple</th>
+        <th>Message</th>
+        <th>Photo</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of stories">
+        <td>{{ s.id }}</td>
+        <td>{{ s.coupleName }}</td>
+        <td>{{ s.message }}</td>
+        <td>
+          <img *ngIf="s.photoUrl" [src]="'http://localhost:8081' + s.photoUrl" alt="{{ s.coupleName }}" />
+        </td>
+        <td>{{ s.status }}</td>
+        <td>
+          <button (click)="deleteStory(s.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <h2>All Payments</h2>
+
+  <div *ngIf="loading">Loading payments...</div>
+  <table *ngIf="!loading && payments.length" class="table table-bordered table-striped mt-3">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>User Type</th>
+        <th>Full Name</th>
+        <th>Phone</th>
+        <th>Plan</th>
+        <th>Payment ID</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of payments; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ p.userType }}</td>
+        <td>{{ p.fullName }}</td>
+        <td>{{ p.phone }}</td>
+        <td>{{ p.membershipPlan }}</td>
+        <td>{{ p.paymentId }}</td>
+        <td>
+          <span [ngClass]="{'text-success': p.status === 'ACTIVE', 'text-danger': p.status !== 'ACTIVE'}">
+            {{ p.status }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && !payments.length" class="text-muted">
+    No payments found.
+  </div>
+</div>

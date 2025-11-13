@@ -1,0 +1,42 @@
+<h2>Manage FAQs</h2>
+
+<!-- ➕ Add FAQ -->
+<div class="add-faq">
+  <input [(ngModel)]="newFaq.title" placeholder="Title">
+  <textarea [(ngModel)]="newFaq.description" placeholder="Description"></textarea>
+  <button (click)="addFaq()">Add FAQ</button>
+</div>
+
+<!-- ❓ FAQ List -->
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let faq of faqs">
+      <!-- Edit Mode -->
+      <ng-container *ngIf="editFaq?.id === faq.id; else viewMode">
+        <td><input [(ngModel)]="editFaq!.title"></td>
+        <td><textarea [(ngModel)]="editFaq!.description"></textarea></td>
+        <td>
+          <button (click)="updateFaq()">Save</button>
+          <button (click)="cancelEdit()">Cancel</button>
+        </td>
+      </ng-container>
+
+      <!-- View Mode -->
+      <ng-template #viewMode>
+        <td>{{ faq.title }}</td>
+        <td>{{ faq.description }}</td>
+        <td>
+          <button (click)="startEdit(faq)">Edit</button>
+          <button (click)="deleteFaq(faq)">Delete</button>
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>

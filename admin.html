@@ -1,0 +1,17 @@
+<div class="admin-wrapper">
+  <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Main content -->
+  <main class="dashboard">
+    <div class="topbar">
+      <h2>Welcome, {{ adminName }}</h2>
+      <button class="btn-clear" (click)="clearCache()">🧹 Clear Cache</button>
+    </div>
+
+    <section class="page-content">
+      <!-- Child routes (Dashboard, Users, Payments, etc.) load here -->
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+</div>

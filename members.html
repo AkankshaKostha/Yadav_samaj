@@ -1,0 +1,49 @@
+<div class="admin-container">
+  <h2>Pending Users</h2>
+
+  <div class="filter-buttons">
+    <button [class.active]="filter === 'all'" (click)="setFilter('all')">All</button>
+    <button [class.active]="filter === 'matrimonial'" (click)="setFilter('matrimonial')">
+      Matrimonial
+    </button>
+    <button [class.active]="filter === 'membership'" (click)="setFilter('membership')">
+      Membership
+    </button>
+  </div>
+
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="!loading && filteredUsers.length === 0">No pending users found.</div>
+
+  <table *ngIf="filteredUsers.length > 0" border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of filteredUsers">
+        <td>{{ user.id }}</td>
+        <td>{{ user.fullName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>
+          <span [ngClass]="{
+              matrimonial: user.type === 'matrimonial',
+              membership: user.type === 'membership'
+            }">{{ user.type }}</span>
+        </td>
+        <td>{{ user.status }}</td>
+        <td>
+          <button (click)="approve(user)">Approve</button>
+          <button (click)="reject(user)">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

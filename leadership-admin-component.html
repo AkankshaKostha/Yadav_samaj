@@ -1,0 +1,22 @@
+<h2>Leadership Team</h2>
+
+<form [formGroup]="leadershipForm" (ngSubmit)="submit()" enctype="multipart/form-data">
+  <input formControlName="title" placeholder="Name" required>
+  <input formControlName="description" placeholder="Designation">
+  <input formControlName="route" placeholder="Profile Route">
+  <input type="file" (change)="onFileChange($event)">
+  <button type="submit">{{ editId ? 'Update' : 'Add' }}</button>
+  <button type="button" (click)="resetForm()">Cancel</button>
+</form>
+
+<hr>
+
+<div class="leadership-list">
+  <div *ngFor="let leader of leadershipList" class="leader-card">
+    <img [src]="getImageUrl(leader)" alt="Leader">
+    <h4>{{ leader.title }}</h4>
+    <p>{{ leader.description }}</p>
+    <button (click)="edit(leader)">Edit</button>
+    <button (click)="delete(leader.id!)">Delete</button>
+  </div>
+</div>

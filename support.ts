@@ -1,27 +1,41 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
+import { SupportService } from '../../../core/support';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-@Injectable({ providedIn: 'root' })
-export class SupportService {
-  private baseUrl = 'http://localhost:8081/api/support';
+@Component({
+  selector: 'app-user-support',
+  standalone: true,
+  templateUrl: './support.html',
+  styleUrls: ['./support.scss'],
+  imports: [FormsModule, CommonModule]
+})
+export class userSupportComponent {
+  formData = { name: '', email: '', subject: '', message: '' };
+  successMsg = '';
+  errorMsg = '';
+  loading = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private supportService: SupportService) {}
 
-  getAll(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl);
-  }
+  sendMessage() {
+    if (!this.formData.name || !this.formData.email || !this.formData.subject || !this.formData.message) {
+      this.errorMsg = 'Please fill all fields!';
+      return;
+    }
 
-  reply(id: number, reply: string): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}/reply`, { reply });
-  }
-
-  delete(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
-  }
-
-   // 🔹 User: send message
-  sendMessage(data: any): Observable<any> {
-    return this.http.post(this.baseUrl, data);
+    this.loading = true;
+    this.supportService.sendMessage(this.formData).subscribe({
+      next: () => {
+        this.successMsg = 'Your message has been sent!';
+        this.errorMsg = '';
+        this.loading = false;
+        this.formData = { name: '', email: '', subject: '', message: '' };
+      },
+      error: () => {
+        this.errorMsg = 'Something went wrong. Please try again.';
+        this.loading = false;
+      }
+    });
   }
 }

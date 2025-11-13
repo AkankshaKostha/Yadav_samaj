@@ -1,0 +1,94 @@
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  background: linear-gradient(135deg, #f8f9fa, #eef2f3);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  font-family: 'Poppins', sans-serif;
+
+  h2 {
+    text-align: center;
+    color: #4b4b4b;
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    thead {
+      background: linear-gradient(90deg, #6610f2, #d63384);
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 14px;
+
+      th {
+        padding: 12px 15px;
+        text-align: center;
+        font-weight: 500;
+      }
+    }
+
+    tbody {
+      tr {
+        transition: all 0.3s ease;
+        text-align: center;
+
+        &:nth-child(even) {
+          background: #f9f9f9;
+        }
+
+        &:hover {
+          background: #eef5ff;
+          transform: scale(1.01);
+        }
+
+        td {
+          padding: 12px;
+          font-size: 14px;
+          color: #555;
+        }
+
+        .text-success {
+          background: #e8f8ef;
+          color: #198754;
+          font-weight: 600;
+          border-radius: 8px;
+          padding: 4px 10px;
+          display: inline-block;
+        }
+
+        .text-danger {
+          background: #ffeaea;
+          color: #dc3545;
+          font-weight: 600;
+          border-radius: 8px;
+          padding: 4px 10px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  .text-muted {
+    text-align: center;
+    font-size: 15px;
+    color: #888;
+    margin-top: 25px;
+  }
+
+  // Loading indicator
+  div[ngIf="loading"] {
+    text-align: center;
+    font-size: 16px;
+    color: #6c757d;
+    padding: 40px 0;
+  }
+}

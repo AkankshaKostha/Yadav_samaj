@@ -1,0 +1,115 @@
+.support-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px 40px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+  }
+
+  h2 {
+    margin-bottom: 25px;
+    font-size: 26px;
+    font-weight: 600;
+    color: #222;
+    background: linear-gradient(90deg, #007bff, #6610f2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 15px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background: #f8faff;
+
+      &:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+        outline: none;
+        background: #ffffff;
+      }
+    }
+
+    textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    button {
+      background: linear-gradient(90deg, #007bff, #6610f2);
+      border: none;
+      border-radius: 10px;
+      padding: 12px 0;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+
+      &:hover {
+        background: linear-gradient(90deg, #0056b3, #5a0fc8);
+        transform: translateY(-2px);
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  /* --- Message Feedback --- */
+  .success {
+    margin-top: 15px;
+    color: #28a745;
+    font-weight: 500;
+    background: #e8f9ee;
+    padding: 10px;
+    border-radius: 6px;
+    border-left: 4px solid #28a745;
+  }
+
+  .error {
+    margin-top: 15px;
+    color: #dc3545;
+    font-weight: 500;
+    background: #fcebea;
+    padding: 10px;
+    border-radius: 6px;
+    border-left: 4px solid #dc3545;
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 768px) {
+    padding: 20px;
+
+    h2 {
+      font-size: 22px;
+    }
+
+    input,
+    textarea {
+      font-size: 14px;
+    }
+
+    button {
+      font-size: 15px;
+    }
+  }
+}

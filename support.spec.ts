@@ -1,16 +1,23 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Support } from './support';
 
 describe('Support', () => {
-  let service: Support;
+  let component: Support;
+  let fixture: ComponentFixture<Support>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(Support);
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [Support]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(Support);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });

@@ -1,0 +1,13 @@
+<div class="support-container">
+  <h2>Contact Support</h2>
+  <form (ngSubmit)="sendMessage()">
+    <input type="text" placeholder="Your Name" [(ngModel)]="formData.name" name="name" required>
+    <input type="email" placeholder="Your Email" [(ngModel)]="formData.email" name="email" required>
+    <input type="text" placeholder="Subject" [(ngModel)]="formData.subject" name="subject" required>
+    <textarea placeholder="Your Message" [(ngModel)]="formData.message" name="message" required></textarea>
+    <button type="submit" [disabled]="loading">{{ loading ? 'Sending...' : 'Send Message' }}</button>
+  </form>
+
+  <p class="success" *ngIf="successMsg">{{ successMsg }}</p>
+  <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+</div>

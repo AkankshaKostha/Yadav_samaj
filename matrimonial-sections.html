@@ -1,0 +1,53 @@
+<div class="admin-matrimonial-sections container">
+  <h2>Manage Matrimonial Home Sections</h2>
+
+  <!-- Section Type Selector -->
+  <div class="form-group">
+    <label for="sectionType">Select Section Type:</label>
+    <select id="sectionType" [(ngModel)]="type" (change)="loadSections()" class="form-control">
+      <option value="MATRIMONIAL_BANNER">Matrimonial Banner</option>
+      <option value="MATRIMONIAL_AD">Matrimonial Ad</option>
+    </select>
+  </div>
+
+  <!-- Add New Section Form -->
+  <form (ngSubmit)="addSection()" class="add-form">
+    <div class="form-row">
+      <input type="text" [(ngModel)]="title" name="title" placeholder="Title" required class="form-control" />
+
+      <input type="text" [(ngModel)]="route" name="route" placeholder="Route (optional)" class="form-control" />
+    </div>
+
+    <textarea [(ngModel)]="description" name="description" placeholder="Description" rows="3"
+      class="form-control"></textarea>
+
+    <div class="form-row">
+      <input type="file" (change)="onFileSelected($event)" accept="image/*" class="form-control" />
+
+      <button type="submit" class="btn btn-primary">
+        Add {{ type.replace('_', ' ') }}
+      </button>
+    </div>
+  </form>
+
+  <!-- Display Existing Sections -->
+  <div class="section-list" *ngIf="sections.length > 0; else noData">
+    <div class="section-card" *ngFor="let s of sections">
+      <img *ngIf="s.imageUrl" [src]="'http://localhost:8081' + s.imageUrl" alt="{{ s.title }}" class="section-image" />
+      <div class="section-info">
+        <h3>{{ s.title }}</h3>
+        <p>{{ s.description }}</p>
+        <p class="route" *ngIf="s.route">Route: {{ s.route }}</p>
+      </div>
+
+      <button *ngIf="s.id != null" (click)="deleteSection(s.id!)" class="btn btn-danger">
+        Delete
+      </button>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <ng-template #noData>
+    <p class="no-data">No sections available for this type.</p>
+  </ng-template>
+</div>

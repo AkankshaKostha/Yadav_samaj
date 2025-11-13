@@ -1,1 +1,49 @@
-<p>dashboard works!</p>
+<div class="dashboard" *ngIf="!loading; else loadingTpl">
+  <h2>Admin Dashboard</h2>
+
+  <div class="stats-grid">
+    <div class="card pink">
+      <h4>Total Members</h4>
+      <p>{{ dashboard.totalUsers || 0 }}</p>
+    </div>
+
+    <div class="card purple">
+      <h4>Approved Members</h4>
+      <p>{{ dashboard.totalApproved || 0 }}</p>
+    </div>
+
+    <div class="card green">
+      <h4>Pending Members</h4>
+      <p>{{ dashboard.totalPending || 0 }}</p>
+    </div>
+
+    <div class="card orange">
+      <h4>Happy Stories</h4>
+      <p>{{ dashboard.happyStoriesCount || 0 }}</p>
+    </div>
+  </div>
+
+  <div class="earnings-section">
+    <div class="header">
+      <h3>Earnings Overview</h3>
+      <select [(ngModel)]="earningsType" (change)="onTypeChange()">
+        <option value="week">This Week</option>
+        <option value="month">This Month</option>
+        <option value="year">This Year</option>
+      </select>
+    </div>
+
+    <canvas id="earningsChart" height="100"></canvas>
+
+    <div class="totals">
+      <div class="total-box">
+        <h4>Total Earnings</h4>
+        <p>{{ dashboard.totalPayments || 0 | currency:'INR' }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="loading">Loading Dashboard...</div>
+</ng-template>

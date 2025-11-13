@@ -1,0 +1,28 @@
+<div class="admin-search-container">
+  <h2>🔍 Admin Search Panel</h2>
+
+  <div class="search-box">
+    <input type="text" [(ngModel)]="searchValue" placeholder="Enter value" class="search-input" />
+
+    <select [(ngModel)]="searchType" class="search-select">
+      <option value="membership">Membership</option>
+      <option value="matrimonial">Matrimonial</option>
+      <option value="donation">Donation</option>
+    </select>
+
+    <select [(ngModel)]="searchBy" class="search-select">
+      <option value="id">By ID</option>
+      <option value="phone" *ngIf="searchType !== 'donation'">By Phone</option>
+      <option value="paymentId" *ngIf="searchType === 'donation'">By Payment ID</option>
+    </select>
+
+    <button (click)="search()">Search</button>
+  </div>
+
+  <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+
+  <div *ngIf="result" class="result">
+    <h4>Result:</h4>
+    <pre>{{ result | json }}</pre>
+  </div>
+</div>

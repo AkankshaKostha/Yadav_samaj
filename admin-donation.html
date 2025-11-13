@@ -1,0 +1,36 @@
+<div class="admin-donation-container">
+  <h2>Manage Donations (Admin)</h2>
+
+  <form (ngSubmit)="saveDonation()">
+    <input type="text" [(ngModel)]="donationForm.name" name="name" placeholder="Name" required />
+    <input type="number" [(ngModel)]="donationForm.amount" name="amount" placeholder="Amount" required />
+    <textarea [(ngModel)]="donationForm.message" name="message" placeholder="Message (optional)"></textarea>
+
+    <button type="submit">{{ editingDonation ? 'Update' : 'Add Donation' }}</button>
+    <button *ngIf="editingDonation" type="button" (click)="cancelEdit()">Cancel</button>
+  </form>
+
+  <table *ngIf="donations.length > 0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Message</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of donations; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ d.name }}</td>
+        <td>{{ d.amount | currency:'INR' }}</td>
+        <td>{{ d.message }}</td>
+        <td>
+          <button (click)="editDonation(d)">Edit</button>
+          <button (click)="deleteDonation(d.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

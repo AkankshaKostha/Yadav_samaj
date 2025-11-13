@@ -1,0 +1,54 @@
+<div class="membership-container">
+  <h2>Membership & Referral Cards</h2>
+
+  <div class="cards-section">
+    <div class="membership-card" *ngFor="let member of members">
+      <div class="card-header" *ngIf="member.profilePhoto" (click)="openImage(member.profilePhoto)">
+
+        <img [src]="member.profilePhoto ? member.profilePhoto : 'default-profile.png'" class="logo"
+          alt="Profile Photo" />
+
+        <div class="header-text">
+          <h3>{{ member.fullName }}</h3>
+          <p>Membership Plan: {{ member.membershipPlan || 'N/A' }}</p>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <p><strong>Phone:</strong> {{ member.phone }}</p>
+        <p><strong>Email:</strong> {{ member.email }}</p>
+        <p><strong>State:</strong> {{ member.state || 'N/A' }}</p>
+        <p><strong>Status:</strong> {{ member.status || 'N/A' }}</p>
+        <p><strong>Referral Code:</strong> {{ member.referralCode }}</p>
+      </div>
+
+      <div class="card-actions">
+        <button (click)="editMember(member)">✏️ Edit</button>
+        <button (click)="deleteMember(member.id)">🗑️ Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------- Edit Modal ---------- -->
+  <div *ngIf="editingMember" class="modal">
+    <div class="modal-content">
+      <h3>Edit Member</h3>
+      <label>Full Name: <input [(ngModel)]="editingMember.fullName" /></label>
+      <label>Phone: <input [(ngModel)]="editingMember.phone" /></label>
+      <label>Email: <input [(ngModel)]="editingMember.email" /></label>
+      <label>State: <input [(ngModel)]="editingMember.state" /></label>
+      <label>Membership Plan: <input [(ngModel)]="editingMember.membershipPlan" /></label>
+      <label>Referral Code: <input [(ngModel)]="editingMember.referralCode" /></label>
+
+      <div class="modal-actions">
+        <button (click)="saveMember()">Save</button>
+        <button (click)="editingMember = null">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------- Image Viewer Modal ---------- -->
+  <div *ngIf="selectedImage" class="image-modal" (click)="closeImage()">
+    <img [src]="selectedImage" alt="Enlarged Image" />
+  </div>
+</div>

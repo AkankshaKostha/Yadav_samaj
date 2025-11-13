@@ -1,0 +1,122 @@
+.admin-donation-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 600;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+
+    input,
+    textarea {
+      padding: 10px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.3s;
+
+      &:focus {
+        border-color: #007bff;
+      }
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    button {
+      align-self: flex-start;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #0056b3;
+      }
+
+      &:nth-child(2) {
+        background: #6c757d;
+        margin-left: 10px;
+
+        &:hover {
+          background: #5a6268;
+        }
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 10px 12px;
+    }
+
+    th {
+      background: #f8f9fa;
+      color: #333;
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tbody tr:hover {
+      background-color: #e9f2ff;
+    }
+
+    button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:first-child {
+        background: #ffc107;
+        color: #222;
+
+        &:hover {
+          background: #e0a800;
+        }
+      }
+
+      &:last-child {
+        background: #dc3545;
+        color: #fff;
+        margin-left: 8px;
+
+        &:hover {
+          background: #b02a37;
+        }
+      }
+    }
+  }
+}

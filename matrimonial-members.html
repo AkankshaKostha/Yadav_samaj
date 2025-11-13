@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h3>Matrimonial Members (Pending / Payment Pending)</h3>
+
+  <table class="table table-bordered mt-3" *ngIf="pendingUsers.length > 0; else noData">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of pendingUsers">
+        <td>{{ u.id }}</td>
+        <td>{{ u.fullName }}</td>
+        <td>{{ u.phone }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.type === 'approved' ? 'Approved - Payment Pending' : 'Pending' }}</td>
+        <td>
+          <button class="btn btn-success btn-sm" (click)="approve(u.id)">Approve</button>
+          <button class="btn btn-danger btn-sm" (click)="reject(u.id)">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noData>
+    <p class="text-center mt-4 text-muted">No pending users found.</p>
+  </ng-template>
+</div>

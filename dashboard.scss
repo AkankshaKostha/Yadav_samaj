@@ -1,0 +1,91 @@
+.dashboard {
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  background: #f8f9fa;
+}
+
+h2 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border-radius: 12px;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+
+  h4 {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 28px;
+    font-weight: bold;
+  }
+}
+
+.pink {
+  background-color: #d63384;
+}
+
+.purple {
+  background-color: #6f42c1;
+}
+
+.green {
+  background-color: #198754;
+}
+
+.orange {
+  background-color: #fd7e14;
+}
+
+.earnings-section {
+  margin-top: 40px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    select {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-weight: 500;
+    }
+  }
+
+  .totals {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+
+    .total-box {
+      background: #f1f3f5;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-align: right;
+    }
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 50px;
+  font-size: 18px;
+}

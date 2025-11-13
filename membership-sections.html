@@ -1,0 +1,61 @@
+<div class="form-container">
+  <h2>{{ editingSection ? 'Update' : 'Add New' }} Section / Card</h2>
+
+  <form (ngSubmit)="editingSection ? saveSection() : addSection()" enctype="multipart/form-data">
+    <div>
+      <label>Type:</label>
+      <select [(ngModel)]="type" name="type" (change)="loadSections()">
+        <option value="MEMBERSHIP_BANNER">Banner</option>
+        <option value="MEMBERSHIP_ANNOUNCEMENT">Announcement</option>
+        <option value="MEMBERSHIP_EVENT">Event</option>
+        <option value="MEMBERSHIP_ACTIVITY">Activity</option>
+        <option value="MEMBERSHIP_CARD">Membership Card</option>
+        <option value="REFERRAL_CARD">Referral Card</option>
+        <option value="MEMBERSHIP_PHOTO">Photo</option>
+      </select>
+    </div>
+
+    <label>Title:</label>
+    <input type="text" [(ngModel)]="title" name="title" required />
+
+    <label>Description:</label>
+    <textarea [(ngModel)]="description" name="description"></textarea>
+
+    <label>Route (optional):</label>
+    <input type="text" [(ngModel)]="route" name="route" />
+
+ <label>Images:</label>
+<input type="file" (change)="onFilesSelected($event)" [attr.multiple]="type === 'MEMBERSHIP_PHOTO' ? '' : null" />
+
+
+
+    <button type="submit">{{ editingSection ? 'Update' : 'Add' }}</button>
+    <button type="button" (click)="resetForm()">Cancel</button>
+  </form>
+</div>
+
+<hr />
+
+<h3>Existing {{ type.replace('_', ' ') }}s</h3>
+<div class="section-list">
+  <div *ngFor="let section of sections" class="section-card">
+    <div class="images">
+      <!-- Multiple images for photo sections -->
+      <ng-container *ngIf="type === 'MEMBERSHIP_PHOTO'">
+        <img *ngFor="let img of section.imageUrls" [src]="'http://localhost:8081' + img" alt="Photo Section Image" />
+      </ng-container>
+
+      <!-- Single image for other sections -->
+      <ng-container *ngIf="type !== 'MEMBERSHIP_PHOTO'">
+        <img [src]="section.imageUrls && section.imageUrls.length > 0
+            ? 'http://localhost:8081' + section.imageUrls[0]
+            : 'default-section.jpg'" alt="Section Image" />
+      </ng-container>
+    </div>
+
+    <h4>{{ section.title }}</h4>
+    <p>{{ section.description }}</p>
+    <button (click)="editSection(section)">✏️ Edit</button>
+    <button (click)="deleteSection(section.id)">🗑️ Delete</button>
+  </div>
+</div>

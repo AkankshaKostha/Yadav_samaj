@@ -1,0 +1,67 @@
+<div class="container mt-4">
+  <h3>🏠 Manage Banners</h3>
+
+  <!-- Add Multiple Banners -->
+  <div class="add-banners mb-4 p-3 border rounded">
+    <h5>Add New Banners</h5>
+
+    <!-- Optional: You can remove this title input if banners should never have a title -->
+    <div class="mb-2">
+      <input type="text" [(ngModel)]="newBannerTitle" placeholder="Title for all selected banners (optional)"
+        class="form-control">
+    </div>
+
+    <div class="mb-2">
+      <input type="text" [(ngModel)]="newBannerDescription" placeholder="Description" class="form-control">
+    </div>
+
+    <div class="mb-2">
+      <input type="file" multiple (change)="onMultipleFilesChange($event)">
+    </div>
+
+    <div class="preview mb-2 d-flex gap-2 flex-wrap">
+      <div *ngFor="let f of multipleFiles" class="preview-img position-relative">
+        <img [src]="f.preview" alt="preview" class="img-thumbnail" />
+        <button class="btn btn-sm btn-danger position-absolute top-0 end-0" (click)="removeFile(f)">Remove</button>
+      </div>
+    </div>
+
+    <button class="btn btn-success" (click)="addMultipleBanners()">Add Banners</button>
+  </div>
+
+  <!-- Existing Sections -->
+<!-- Existing Sections -->
+<div class="row">
+  <div class="col-md-4 mb-3" *ngFor="let s of sections">
+    <div class="card shadow-sm">
+      <!-- Always show image -->
+      <img *ngIf="s.imageUrl" [src]="s.imageUrl" alt="Banner Image" class="card-img-top">
+
+      <div class="card-body">
+        <!-- Show description only if it exists -->
+        <p *ngIf="s.description && s.description.trim() !== ''">{{ s.description }}</p>
+
+        <!-- Edit Section -->
+        <form (ngSubmit)="updateHomeSection(s)" enctype="multipart/form-data" class="mt-2">
+          <!-- Description input for admin (optional) -->
+          <div class="mb-2">
+            <input class="form-control" [(ngModel)]="s.description" name="description-{{s.id}}"
+              placeholder="Description (optional)">
+          </div>
+
+          <!-- Image input -->
+          <div class="mb-2">
+            <input type="file" (change)="onFileChange($event, s)">
+          </div>
+
+          <button class="btn btn-primary btn-sm">Save Changes</button>
+        </form>
+
+        <button class="btn btn-danger btn-sm mt-2" (click)="deleteSection(s.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>

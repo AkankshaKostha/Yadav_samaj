@@ -1,0 +1,192 @@
+.membership-container {
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .cards-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+
+    .membership-card {
+      width: 280px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        background: #f7f7f7;
+        cursor: pointer;
+
+        img.logo {
+          width: 80px; // fixed width
+          height: 80px; // fixed height
+          border-radius: 50%; // circular
+          object-fit: cover; // maintain aspect ratio
+          margin-right: 15px;
+          border: 2px solid #ddd;
+          background-color: #eee; // fallback background
+        }
+
+        .header-text {
+          h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #222;
+          }
+
+          p {
+            margin: 3px 0 0;
+            font-size: 14px;
+            color: #555;
+          }
+        }
+      }
+
+      .card-body {
+        padding: 15px;
+
+        p {
+          margin: 5px 0;
+          font-size: 14px;
+          color: #444;
+
+          strong {
+            color: #222;
+          }
+        }
+      }
+
+      .card-actions {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 15px;
+        border-top: 1px solid #eee;
+        background: #fafafa;
+
+        button {
+          padding: 6px 12px;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 14px;
+          transition: all 0.2s ease;
+
+          &:hover {
+            opacity: 0.85;
+          }
+
+          &.edit {
+            background: #ffd966;
+            color: #222;
+          }
+
+          &.delete {
+            background: #f26b6b;
+            color: #fff;
+          }
+
+          &.approve {
+            background: #4caf50;
+            color: #fff;
+          }
+
+          &.reject {
+            background: #f44336;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  // ---------- Modal ---------- //
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+
+    .modal-content {
+      width: 400px;
+      max-width: 90%;
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+      h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        color: #333;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #555;
+
+        input {
+          width: 100%;
+          padding: 8px;
+          margin-top: 4px;
+          border-radius: 6px;
+          border: 1px solid #ccc;
+          font-size: 14px;
+        }
+      }
+
+      .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 15px;
+
+        button {
+          padding: 8px 14px;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 14px;
+          transition: all 0.2s ease;
+
+          &:hover {
+            opacity: 0.9;
+          }
+
+          &.save {
+            background: #4caf50;
+            color: #fff;
+          }
+
+          &.cancel {
+            background: #f44336;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
